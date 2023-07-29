@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Your Blogs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        /* Styles for body and other elements */
+        body {
+            background-color: black;
+        }
+
+        .blog-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .blog-title {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .blog-author {
+            font-size: 15px;
+            color: #999;
+        }
+
+        .blog-content {
+            color: #ddd;
+        }
+
+        .read-more-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .read-more-link:hover {
+            text-decoration: underline;
+        }
+
+        .hr-custom {
+            border-radius: 0;
+            height: 1px;
+            background-color: gray;
+        }
+
+        /* Style for the delete button */
+        .delete-btn {
+            background-color: #660708;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+        .edit-btn {
+            background-color: royalblue;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+
+        /* Style for the delete confirmation popup */
+        .confirmation-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .blog h5 {
+            color: #aaa;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 style="color: white">Your Blogs</h1>
+            <br>
+            <div th:each="blog : ${blogs}" class="blog-card">
+                <h2 class="blog-title" th:text="${blog.title}"></h2>
+                <h5 class="blog-author">Author: <span th:text="${blog.author}"></span></h5>
+                <h5 style="color: #aaa;
+            font-size: 16px;"><span th:text="${#temporals.format(blog.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></h5>
+
+                <p class="blog-content" th:text="${#strings.substring(blog.content,0,50) + '  ....'}"
+                   th:unless="${blog.content.length() <= 50}"></p>
+                <p class="blog-content" th:text="${#strings.substring(blog.content,0,blog.content.length())}"
+                   th:if="${blog.content.length() <= 50}"></p>
+                <hr class="hr-custom">
+
+                <!-- New container for the delete button -->
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-6 text-left">
+                        <!-- This will align the "Read More" link to the right -->
+                        <a class="read-more-link" style="color: #247eff" th:href="@{'/th-blogs/fetchById/' + ${blog.id}}">Read More</a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <div class="d-flex justify-content-end">
+                            <a th:href="@{'/th-blogs/editblog/' + ${blog.id}}">
+                                <button class="edit-btn mr-2" type="button">Edit Post</button>
+                            </a>
+
+                            <a th:href="@{'/th-blogs/deleteblog/' + ${blog.id}}">
+                                <button class="delete-btn"  type="button">Delete Post</button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="confirmation-popup" id="confirmationPopup">
+    <p>Are you sure you want to delete this blog?</p>
+    <button class="btn btn-danger" id="confirmDelete">Delete</button>
+    <button class="btn btn-secondary" id="cancelDelete">Cancel</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

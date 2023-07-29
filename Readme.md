@@ -1,0 +1,1 @@
+LinkSathi is a versatile link management platform designed to simplify and enhance the way users share and organize their online links. With LinkSathi, users can create a personalized landing page or bio link that houses multiple links to their various online profiles, websites, and content.
