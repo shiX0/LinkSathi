@@ -1,29 +1,178 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oi:wght@400&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1920px;
+      position: relative;
+      background: #502274;
+      overflow: hidden;
+    }
+
+    .content-box {
+      width: 100%;
+      max-width: 1200px;
+      margin: 50px auto 0;
+      padding: 40px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-links {
+      color: #1E2330;
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .site-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .site-links li {
+      margin-bottom: 15px;
+    }
+
+    .site-links a {
+      color: #676B5F;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .login-buttons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .logo-container a {
+      text-decoration: none; /* Remove underline from the anchor tags wrapping the icons */
+    }
+
+    .login-btn,
+    .get-started-btn {
+      margin-top: 40px;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .links-tab{
+      display: flex;
+      flex-direction: row;
+      gap: 60%;
+    }
+
+    .login-btn {
+      background: #EFF0EC;
+    }
+
+    .get-started-btn {
+      background: #D2E823;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-top: 40px;
+    }
+
+    .logo-container a {
+      text-decoration: none;
+      cursor: none;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      border-radius: 50%;
+      background: #1E2330;
+      color: #FFF;
+      transition: background-color 0.3s ease;
+    }
+    .logo-container a:hover{
+      background: rgba(255, 251, 0, 0.82);
+      color: #1E1E1E;
+    }
+
+
+    .header {
+      width: 100%;
+      max-width: 1200px;
+      padding: 40px;
+      background: #E9C0E9;
+      border-radius: 64px;
+      margin: 50px auto 0;
+      text-align: center;
+      font-family: 'Oi', sans-serif;
+      font-size: 96px;
+      font-weight: 400;
+      letter-spacing: 20.16px;
+      color: black;
+      height: 300px;
+      display: flex; /* Use flexbox to center vertically and horizontally */
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally */
+    }
+
+
+    .footer {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-align: center; /* Center the text horizontally */
+      color: #E9C0E9;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0.16px;
+    }
+  </style>
 </head>
 <body>
-<footer th:layout:footer>
-  <div style="display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;">
-    <h1 style="font-size: 400px;">2023</h1>
-    <div style="margin-top: 50px;">
-      <a href="https://twitter.com/dailydoseofnone" style="margin: 0 5px;"><img th:src="@{/images/twitter.png}" alt="Twitter" style="width: 50px; height: 50px;"></a>
-      <a href="https://github.com/aasiskrk" style="margin: 0 10px;"><img th:src="@{/images/github.png}" alt="GitHub" style="width: 30px; height: 30px;"></a>
-      <a href="https://instagram.com/aashista_krki" style="margin: 0 10px;"><img th:src="@{/images/insta.png}" alt="Instagram" style="width: 30px; height: 30px;"></a>
-      <a href="https://snapchat.com/add/aashiskarki69" style="margin: 0 10px;"><img th:src="@{/images/snapchat.png}" alt="Snapchat" style="width: 30px; height: 30px;"></a>
+<div class="container">
+  <div class="content-box">
+    <div class="site-links">
+      <ul>
+        <li><a href="#">home</a></li>
+        <li><a href="#">about us</a></li>
+        <li><a href="#">dashboard</a></li>
+      </ul>
     </div>
-    <p style="margin-top: 30px;">© Daily Bugle</p>
-    <p> ~_~Aashista Karki</p>
+    <div class="links-tab">
+    <div class="login-buttons">
+      <a class="login-btn" href="#">Log in</a>
+      <a class="get-started-btn" href="#">Get started for free</a>
+    </div>
+      <div class="logo-container">
+        <a href="https://www.instagram.com/_shishirsharma_" target="_blank"><i class="fab fa-instagram logo"></i></a>
+        <a href="https://www.github.com/shiX0" target="_blank"><i class="fab fa-github logo"></i></a>
+      </div>
+
+    </div>
   </div>
-</footer>
+  <div class="header">LinkSathi&#x03DF;
+  </div>
+  <div class="footer">LinkSathi 2023 &copy All rights reserved</div>
+</div>
 </body>
 </html>

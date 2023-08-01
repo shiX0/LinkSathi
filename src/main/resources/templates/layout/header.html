@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,71 +8,75 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-color: #00000000 !important;
+            background-color: #222222 !important;
+            color: white;
         }
-        .nav-button .nav-link {
-            background-color: white;
-            color: black;
+        .nav-link {
+            color: white;
+            position: relative;
+            transition: color 0.3s;
         }
-
+        .nav-link:hover {
+            color: yellow;
+            text-shadow: 0 0 8px rgba(255, 255, 0, 0.7);
+            z-index: 1;
+        }
+        .nav-logo {
+            height: 40px;
+            padding-left: 17px;
+            padding-bottom: 5px;
+        }
+        .nav-brand {
+            color: #fcd34d;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .nav-button .btn {
+            color: white;
+            background-color: #660708;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .nav-button .btn:hover {
+            background-color: #8a0a0a;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-<header th:layout:header>
-    <nav class="navbar navbar-expand-lg">
+<header>
+    <nav class="navbar navbar-expand-lg bg-gradient-to-r from-purple-600 to-indigo-600 py-4">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/th-homepage/goHome}">
-                <img style="height: 40px; padding-left: 17px; padding-bottom: 5px" th:src="@{/images/buglelogo.png}" alt="Daily Bugle Icon" class="logo-icon">
+            <a class="navbar-brand" href="/th-homepage/goHome">
+                <img class="nav-logo" src="/images/buglelogo.png" alt="LinkSathi Icon">
                 <br>
-                <span style="color: #660708; font-size: 15px">Daily Bugle</span>
+                <span class="nav-brand">LinkSathi</span>
             </a>
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a style="color: white" class="nav-link" th:href="@{/th-homepage/goHome}">Home</a>
+                    <a class="nav-link" href="/th-homepage/goHome">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white" class="nav-link" th:href="@{/th-blogs/getAll}">Blogs</a>
+                    <a class="nav-link" href="/th-blogs/getAll">Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white" class="nav-link" th:href="@{/th-homepage/tags}">Tags</a>
+                    <a class="nav-link" href="/th-homepage/tags">Tags</a>
                 </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a style="color: white" class="nav-link" href="/th-homepage/goHome#contactsec">Contact</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/th-homepage/goHome#contactsec">Contact</a>
                 </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a style="color: green" class="nav-link" th:href="@{/th-blogs/user-blogs}">Your Blogs</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/th-blogs/user-blogs">Your Blogs</a>
                 </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a style="color: green" class="nav-link" th:href="@{/th-blogs/create}">Add Blog</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/th-blogs/create">Add Blog</a>
                 </li>
-
-
-
-                <li class="nav-button" sec:authorize="isAuthenticated()">
-                    <button id="logout-button" style="color: white;padding: 5px 10px;text-align: center;margin: 4px 10px;background-color: #660708; border-radius: 10px">
-                        Logout
-                    </button>
+                <li class="nav-button">
+                    <a class="btn" href="/login">Login</a>
                 </li>
-
-
-                <li class="nav-button" sec:authorize="!isAuthenticated()">
-                    <button id="login-button" style="color: black;padding: 5px 10px;text-align: center;margin: 4px 10px;background-color: white; border-radius: 10px">
-                        Login
-                    </button>
+                <li class="nav-button">
+                    <a class="btn" href="/logout">Logout</a>
                 </li>
-
-                <script>
-                    document.getElementById("login-button").addEventListener("click", function() {
-                        window.location.href = "/login";
-                    });
-                </script>
-
-                <script>
-                    document.getElementById("logout-button").addEventListener("click", function() {
-                        window.location.href = "/logout";
-                    });
-                </script>
-
             </ul>
         </div>
     </nav>
