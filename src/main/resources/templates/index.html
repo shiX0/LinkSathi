@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> furniture store Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{~/css/style.css}">
+    <link rel="stylesheet" th:href="@{~/css/https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Poppins', sans-serif; background-color: #f2f2f2;">
+
+<header>
+    <a th:href="@{~/user/homepage}" class="navbar-brand" style="color: purple;"><b>Link</b> <span style="color: black"><b>Sathi</b></span></a>
+    <div class="bx bx-menu" id="menu-icon"></div>
+
+    <ul class="navbar">
+        <li><a href="#home" style="color: purple;">Home</a></li>
+        <li><a href="#about" style="color: purple;">About</a></li>
+        <li><a href="#new" style="color: purple;">Best Selling</a></li>
+        <li><a href="#shop" style="color: purple;">Our Products</a></li>
+        <li><a href="#contact" style="color: purple;">Contact</a></li>
+        <a th:href="@{~/user/viewAllMyOrders/}+${userdata.id}" style="color: purple;">Profile</a>
+    </ul>
+</header>
+
+<section class="home" id="home" style="background-color: #800080;">
+    <div class="home-text">
+        <h1 style="color: white;"><span>Elevate</span> Your Links,<br>Find Digital <span>Empowerment</span></h1>
+        <i><p style="color: white; font-weight: bold;">At Linksathi, we craft your online journey, where every link leads to your digital success. Your satisfaction fuels our innovation.</p></i>
+        <a href="#shop" class="btn" style="background-color: purple;">Shop Now</a>
+    </div>
+</section>
+
+<section class="about" id="about" style="background-color: white;">
+    <div class="about-img">
+        <img th:src="@{~/images/kdl.jpg}" alt="">
+    </div>
+    <div class="about-text">
+        <span style="color: purple;">About Linksathi</span>
+        <h2>Empowering Digital Presence,<br> One Link at a Time.</h2>
+        <p>Linksathi is a cutting-edge link management platform that redefines the way you organize and interact with web links. Beyond mere link management, Linksathi revolutionizes the digital landscape by seamlessly integrating software link sales capabilities.</p>
+        <p>By bridging the gap between efficient link organization and a marketplace for software solutions, Linksathi offers a dynamic space for link curators and software vendors to connect and thrive.</p>
+        <p>Unveil a world of streamlined link management while exploring an innovative marketplace featuring software creations. With Linksathi, you can curate your links with ease and discover software solutions that elevate your digital experience.</p>
+        <a href="#features" class="btn" style="background-color: purple;">Discover More.</a>
+    </div>
+</section>
+
+<section class="new" id="new" style="background-color: #f2f2f2;">
+    <div class="heading">
+        <h2 style="color: purple;">Best Selling</h2>
+    </div>
+    <div class="new-container">
+        <div class="box" th:each="product:${productfetch}" style="border-color: purple;">
+            <a th:href="@{~/user/productinfo/}+${product.id}">
+                <div class="box-img">
+                    <img th:src="'data:image/png;base64,'+${product.imageBase64}" alt="">
+                </div>
+                <div class="title-price">
+                    <h3 th:text="${product.productname}" style="color: purple;"></h3>
+                    <div class="stars">
+                        <i class='bx bxs-star' style="color: purple;"></i>
+                        <i class='bx bxs-star' style="color: purple;"></i>
+                        <i class='bx bxs-star' style="color: purple;"></i>
+                        <i class='bx bxs-star' style="color: purple;"></i>
+                        <i class='bx bxs-star-half' style="color: purple;"></i>
+                    </div>
+                </div>
+                <span th:text="${product.price}" style="color: purple;"></span>
+                <i class='bx bx-cart' style="color: purple;"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="shop" id="shop" style="background-color: white;">
+    <div class="heading">
+        <span style="color: purple;">New Arrival</span>
+        <h2 style="color: purple;">Shop Now</h2>
+    </div>
+    <div class="shop-container">
+        <div class="box" th:each="product:${add}" style="border-color: purple;">
+            <a th:href="@{~/user/productinfo/}+${product.id}">
+                <div class="box-img">
+                    <img th:src="'data:image/png;base64,'+${product.imageBase64}" alt="">
+                </div>
+                <div class="title-price">
+                    <h3 th:text="${product.productname}" style="color: purple;"></h3>
+                </div>
+                <div>
+                    <span th:text="'Rs ' + ${product.price}" style="color: purple;"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter" id="contact" style="background-color: #f2f2f2;">
+    <h2 style="color: purple;">Subscribe To Newsletter</h2>
+    <div class="news-box">
+        <input type="text" placeholder="Enter Your Email..." style="border-color: purple;">
+        <a href="#" class="btn" style="background-color: purple;">Subscribe</a>
+    </div>
+</section>
+
+<footer th:replace="/footer.html :: footer"></footer>
+
+<script src="main.js"></script>
+</body>
+</html>
